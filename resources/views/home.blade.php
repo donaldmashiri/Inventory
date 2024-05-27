@@ -3,7 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+       <div class="col-md-3">
+           <ul class="nav flex-column">
+               <li class="nav-item">
+                   <a class="nav-link" href="#">Inventory</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="#">Link</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="#">Link</a>
+               </li>
+           </ul>
+       </div>
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
