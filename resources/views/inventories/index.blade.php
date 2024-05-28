@@ -38,7 +38,15 @@
                                         <td> {{$inventory->item_category}} </td>
                                         <td> {{$inventory->item_code}} </td>
                                         <td> {{$inventory->item_quantity}} </td>
-                                        <td> Available </td>
+                                        <td>
+                                            @if ($inventory->item_quantity < 10)
+                                                <span class="text-danger fw-bold">Extremely Low</span>
+                                            @elseif ($inventory->item_quantity < 50)
+                                                <span class="text-warning fw-bold">Low</span>
+                                            @else
+                                                <span class="text-success fw-bold">Available</span>
+                                            @endif
+                                        </td>
                                         <td><a href="{{route('inventories.edit', $inventory->id)}}" class="btn btn-warning btn-sm">Edit</a> </td>
                                     </tr>
                                 @endforeach

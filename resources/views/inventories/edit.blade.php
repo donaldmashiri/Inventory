@@ -15,42 +15,37 @@
                         </div>
                     </div>
                     <div class="card-body">
+
+                        <table class="table table-sm table-bordered table-striped table-responsive-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Code</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> {{$inventory->id}} </td>
+                                    <td> {{$inventory->item_name}} </td>
+                                    <td> {{$inventory->item_description}} </td>
+                                    <td> {{$inventory->item_category}} </td>
+                                    <td> {{$inventory->item_code}} </td>
+                                    <td> {{$inventory->item_quantity}} </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
                         @include('layouts.messages')
-                        <form method="POST" action="{{ route('inventories.store') }}">
+                        <form method="POST" action="{{ route('inventories.update', $inventory->id) }}">
                             @csrf
+                            @method('PUT')
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="item_name">{{ __('Item Name') }}</label>
-                                    <input id="item_name" type="text" class="form-control is-invalid @enderror" name="item_name"  value="{{$inventory->item_name}}" required >
-
-                                    @error('item_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span> @enderror
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="item_code">{{ __('Item Code') }}</label>
-                                    <input id="item_code" type="text" value="{{$inventory->item_code}}" class="form-control @error('item_code') is-invalid @enderror" name="item_code"  required >
-
-                                    @error('item_code')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span> @enderror
-                                </div>
-
-                                <div class="col-md-6 form-group mt-3">
-                                    <label for="item_category">{{ __('Item Category') }}</label>
-                                    <select name="item_category" class="form-control " id="item_category">
-                                        <option value="{{$inventory->category}}">{{$inventory->category}}</option>
-                                    </select>
-                                    @error('item_category')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-
-                                </div>
 
                                 <div class="col-md-6 form-group mt-3">
                                     <label for="item_quantity">{{ __('Quantity') }}</label>
@@ -62,21 +57,12 @@
                                     </span> @enderror
                                 </div>
 
-                                <div class="col-md-12 form-group mt-3">
-                                    <label for="item_description">{{ __('Description') }}</label>
-                                    <textarea id="item_description" class="form-control @error('item_description') is-invalid @enderror" name="item_description" required autocomplete="item_description"></textarea>
-
-                                    @error('item_description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span> @enderror
-                                </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success">
-                                        {{ __('Submit') }}
+                                        {{ __('update') }}
                                     </button>
                                 </div>
                             </div>

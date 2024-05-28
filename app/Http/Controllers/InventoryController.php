@@ -62,15 +62,26 @@ class InventoryController extends Controller
      */
     public function edit(Inventory $inventory)
     {
-        //
+        return view('inventories.edit')->with('inventory', $inventory);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Inventory $inventory)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'item_quantity' => 'required|numeric',
+        ]);
+
+        // Find the inventory record
+        $inventory = Inventory::findOrFail($id);
+
+        // Update the inventory record
+        $inventory->item_quantity = $request->input('item_quantity');
+        $inventory->save();
+
+        return back()->with('success', 'Quantity Updated Successfully');
     }
 
     /**

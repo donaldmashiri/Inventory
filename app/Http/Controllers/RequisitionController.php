@@ -63,7 +63,18 @@ class RequisitionController extends Controller
      */
     public function update(Request $request, Requisition $requisition)
     {
-        //
+        // Validate the input data
+        $request->validate([
+            'status' => 'required|in:approved,rejected',
+        ]);
+
+        // Update the requisition status
+        $requisition->status = $request->input('status');
+        $requisition->save();
+
+        // Redirect the user with a success message
+        return redirect()->route('requisitions.index')
+            ->with('success', 'Requisition status updated successfully.');
     }
 
     /**

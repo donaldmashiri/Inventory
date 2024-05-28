@@ -15,6 +15,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @include('layouts.messages')
                        @if($requisitions->count() > 0)
                             <table class="table table-sm table-bordered table-striped table-responsive-sm">
                                 <thead>
@@ -29,20 +30,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($requisitions as $data)
+                                @foreach($requisitions as $requisition)
                                     <tr>
-                                        <td> {{$data->id}} </td>
-                                        <td> {{$data->inventory->item_name}} </td>
-                                        <td> {{$data->inventory->item_category}} </td>
-                                        <td> {{$data->inventory->item_code}} </td>
-                                        <td> {{$data->quantity}} </td>
-                                        <td> {{$data->status}} </td>
-{{--                                       --}}
-{{--                                        <td> {{$inventory->item_category}} </td>--}}
-{{--                                        <td> {{$inventory->item_code}} </td>--}}
-{{--                                        <td> {{$inventory->item_quantity}} </td>--}}
-{{--                                        <td> Available </td>--}}
-{{--                                        <td><a href="{{route('inventories.show', $inventory->id)}}" class="btn btn-warning btn-sm">View</a> </td>--}}
+                                        <td> {{$requisition->id}} </td>
+                                        <td> {{$requisition->inventory->item_name}} </td>
+                                        <td> {{$requisition->inventory->item_category}} </td>
+                                        <td> {{$requisition->inventory->item_code}} </td>
+                                        <td> {{$requisition->quantity}} </td>
+                                        <td>
+                                            @if ($requisition->status == 'approved')
+                                                <span class="text-success fw-bold">{{ $requisition->status }}</span>
+                                            @elseif ($requisition->status == 'rejected')
+                                                <span class="text-danger fw-bold">{{ $requisition->status }}</span>
+                                            @else
+                                                <span class="text-warning">{{ $requisition->status }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="{{ route('requisitions.update', $requisition->id) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="status" value="approved" class="btn btn-success btn-sm">Approve</button>
+                                                <button type="submit" name="status" value="rejected" class="btn btn-danger btn-sm">Reject</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
