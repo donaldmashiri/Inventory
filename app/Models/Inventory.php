@@ -18,4 +18,9 @@ class Inventory extends Model
         'status',
     ];
 
+    public function requisitions()
+    {
+        return $this->hasMany(Requisition::class, 'item_id');
+    }
+
 }

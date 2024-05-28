@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventory;
 use App\Models\Requisition;
 use Illuminate\Http\Request;
+use Auth;
 
 class RequisitionController extends Controller
 {
@@ -12,7 +14,8 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        //
+        $requisitions = Requisition::orderBy('id', 'desc')->get();
+        return view('requisitions.index', compact('requisitions'));
     }
 
     /**
@@ -20,7 +23,8 @@ class RequisitionController extends Controller
      */
     public function create()
     {
-        //
+        $items = Inventory::all();
+        return view('requisitions.create', compact('items'));
     }
 
     /**
@@ -28,7 +32,14 @@ class RequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requistion = Requisition::create([
+            'user_id' => Auth::user()->id,
+            'item_id' => $request->item_id,
+            'quantity' => $request->quantity,
+            'reason' => $request->reason,
+        ]);
+
+        return back()->with('success', 'Requisition created Successfully');
     }
 
     /**

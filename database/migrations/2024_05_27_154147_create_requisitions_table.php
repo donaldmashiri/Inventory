@@ -16,7 +16,9 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('item_id');
             $table->integer('quantity');
-            $table->enum('status', ['Pending', 'Approved', 'Rejected']);
+            $table->text('reason');
+            $table->string('status')->default('pending');
+
             $table->timestamps();
         });
     }

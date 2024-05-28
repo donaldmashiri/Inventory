@@ -43,9 +43,11 @@
                                    <label for="item_category">{{ __('Item Category') }}</label>
                                    <select name="item_category" class="form-control " id="item_category">
                                        <option value="">Select Category</option>
-                                       <option value="Campus Facilities">Campus Facilities</option>
-                                       <option value="Campus Life">Campus Life</option>
-                                       <option value="Academics">Academics</option>
+                                       <option value="Clothing">Clothing</option>
+                                       <option value="Electronics">Electronics</option>
+                                       <option value="Home Goods">Home Goods</option>
+                                       <option value="Furniture">Furniture</option>
+                                       <option value="Grocery">Grocery</option>
                                    </select>
                                    @error('item_category')
                                    <span class="invalid-feedback" role="alert">

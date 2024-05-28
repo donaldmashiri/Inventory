@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'item_id',
+        'quantity',
+        'reason',
+        'status',
+    ];
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class, 'item_id');
+    }
 }

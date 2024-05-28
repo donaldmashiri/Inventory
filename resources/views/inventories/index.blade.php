@@ -26,6 +26,7 @@
                                     <th scope="col">Code</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +39,7 @@
                                         <td> {{$inventory->item_code}} </td>
                                         <td> {{$inventory->item_quantity}} </td>
                                         <td> Available </td>
+                                        <td><a href="{{route('inventories.edit', $inventory->id)}}" class="btn btn-warning btn-sm">Edit</a> </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
