@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('item_description');
             $table->string('item_category');
             $table->string('item_code');
-            $table->integer('quantity');
-            $table->integer('reorder_level');
+            $table->integer('item_quantity');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

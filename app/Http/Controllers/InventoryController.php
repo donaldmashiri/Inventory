@@ -12,7 +12,8 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        $inventories = Inventory::orderBy('id', 'desc')->get();
+        return view('inventories.index', compact('inventories'));
     }
 
     /**
@@ -20,7 +21,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventories.create');
     }
 
     /**
@@ -28,7 +29,24 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'item_name' => 'required|string|max:255',
+            'item_description' => 'required|string',
+            'item_category' => 'required',
+            'item_code' => 'required',
+            'item_quantity' => 'required',
+        ]);
+
+
+        $inventory = Inventory::create([
+            'item_name' => $request->item_name,
+            'item_description' => $request->item_description,
+            'item_category' => $request->item_category,
+            'item_code' => $request->item_code,
+            'item_quantity' => $request->item_quantity,
+        ]);
+
+        return back()->with('success', 'Item Successfully Added');
     }
 
     /**
