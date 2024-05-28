@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoices;
-use App\Models\Requisition;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class InvoicesController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-         $requisitions = Requisition::where('status', 'approved')->get();
-        return view('invoices.index', compact('requisitions'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -38,14 +37,13 @@ class InvoicesController extends Controller
      */
     public function show(string $id)
     {
-        $invoice = Requisition::findorfail($id);
-        return view('invoices.show', compact('invoice'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Invoices $invoices)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +51,7 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Invoices $invoices)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,8 +59,12 @@ class InvoicesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Invoices $invoices)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        // Redirect the user with a success message
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully.');
     }
 }

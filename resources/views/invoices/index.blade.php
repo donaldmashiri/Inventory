@@ -8,11 +8,8 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="fw-bolder">
-                            {{ __('Requisitions') }}
+                            {{ __('Invoices') }}
                         </h5>
-                        <div class="justify-content-end">
-                            <a href="{{route('requisitions.create')}}" class="btn btn-success btn-sm justify-content-end"> Create</a>
-                        </div>
                     </div>
                     <div class="card-body">
                         @include('layouts.messages')
@@ -24,9 +21,9 @@
                                     <th scope="col">Item Name</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Code</th>
-                                    <th scope="col">Requested (Qnty)</th>
-                                    <th scope="col">Reason</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Quantity Requested</th>
+                                    <th scope="col">Date Requested</th>
+                                    <th scope="col">Date Approved</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>
@@ -37,29 +34,13 @@
                                         <td> {{$requisition->inventory->item_name}} </td>
                                         <td> {{$requisition->inventory->item_category}} </td>
                                         <td> {{$requisition->inventory->item_code}} </td>
+                                        <td> {{$requisition->quantity}} </td>
+                                        <td> {{$requisition->created_at}} </td>
+                                        <td> {{$requisition->updated_at}} </td>
                                         <td>
-                                            Current: {{$requisition->inventory->item_quantity}}
-                                            <br>
-                                            Requested: {{$requisition->quantity}}
+                                            <a href="" class="btn btn-info btn-sm">View Invoice</a>
                                         </td>
-                                        <td> {{$requisition->reason}} </td>
-                                        <td>
-                                            @if ($requisition->status == 'approved')
-                                                <span class="text-success fw-bold">{{ $requisition->status }}</span>
-                                            @elseif ($requisition->status == 'rejected')
-                                                <span class="text-danger fw-bold">{{ $requisition->status }}</span>
-                                            @else
-                                                <span class="text-warning">{{ $requisition->status }}</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <form method="POST" action="{{ route('requisitions.update', $requisition->id) }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" name="status" value="approved" class="btn btn-success btn-sm">Approve</button>
-                                                <button type="submit" name="status" value="rejected" class="btn btn-danger btn-sm">Reject</button>
-                                            </form>
-                                        </td>
+
                                     </tr>
                                 @endforeach
                                 </tbody>
