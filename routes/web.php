@@ -25,3 +25,4 @@ Route::resource('inventories',\App\Http\Controllers\InventoryController::class);
 Route::resource('requisitions',\App\Http\Controllers\RequisitionController::class);
 Route::resource('invoices',\App\Http\Controllers\InvoicesController::class);
 Route::resource('users',\App\Http\Controllers\UserController::class);
+Route::resource('reports',\App\Http\Controllers\ReportsController::class);

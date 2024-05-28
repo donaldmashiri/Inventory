@@ -1,7 +1,7 @@
 <div class="col-md-3">
     <div class="card">
+        <h5 class="card-title bg-secondary p-2">Menu</h5>
         <div class="card-body">
-            <h5 class="card-title">Menu</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="/home">
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('invoices.index') }}">
+                    <a class="nav-link" href="{{ route('reports.index') }}">
                         <i class="bi bi-bar-chart"></i> Reporting Analytics
                     </a>
                 </li>

@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="fw-bolder">
+                            <i class="bi bi-box me-2"></i>
                             {{ __('Inventories') }}
                         </h5>
                         <div class="justify-content-end">

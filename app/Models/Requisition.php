@@ -17,6 +17,11 @@ class Requisition extends Model
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function inventory()
     {
         return $this->belongsTo(Inventory::class, 'item_id');

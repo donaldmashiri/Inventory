@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="fw-bolder">
+                            <i class="bi bi-clipboard-check me-2"></i>
                             {{ __('Requisitions') }}
                         </h5>
                         <div class="justify-content-end">
@@ -23,7 +24,7 @@
                                     <th scope="col">Req#</th>
                                     <th scope="col">Item Name</th>
                                     <th scope="col">Category</th>
-                                    <th scope="col">Code</th>
+                                    <th scope="col">Requested by</th>
                                     <th scope="col">Requested (Qnty)</th>
                                     <th scope="col">Reason</th>
                                     <th scope="col">Status</th>
@@ -34,9 +35,9 @@
                                 @foreach($requisitions as $requisition)
                                     <tr>
                                         <td> {{$requisition->id}} </td>
-                                        <td> {{$requisition->inventory->item_name}} </td>
+                                        <td> {{$requisition->inventory->item_name}} - {{$requisition->inventory->item_code}} </td>
                                         <td> {{$requisition->inventory->item_category}} </td>
-                                        <td> {{$requisition->inventory->item_code}} </td>
+                                        <td> {{$requisition->user->name?? "Kimmy"}} </td>
                                         <td>
                                             Current: {{$requisition->inventory->item_quantity}}
                                             <br>
@@ -53,11 +54,15 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form method="POST" action="{{ route('requisitions.update', $requisition->id) }}">
+                                            <form method="POST" action="{{ route('requisitions.update', $requisition->id) }}" class="d-flex justify-content-end">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" name="status" value="approved" class="btn btn-success btn-sm">Approve</button>
-                                                <button type="submit" name="status" value="rejected" class="btn btn-danger btn-sm">Reject</button>
+                                                <button type="submit" name="status" value="approved" class="btn btn-success btn-sm me-2">
+                                                    <i class="bi bi-check"></i>
+                                                </button>
+                                                <button type="submit" name="status" value="rejected" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-x"></i>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
@@ -65,7 +70,7 @@
                                 </tbody>
                             </table>
                            @else
-                           <p class="alert alert-danger">No Items Added</p>
+                           <p class="alert alert-danger">No Requests</p>
                         @endif
 
                     </div>

@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="fw-bolder">
+                            <i class="bi bi-file-earmark-text me-2"></i>
                             {{ __('Invoices') }}
                         </h5>
                     </div>
@@ -38,7 +39,7 @@
                                         <td> {{$requisition->created_at}} </td>
                                         <td> {{$requisition->updated_at}} </td>
                                         <td>
-                                            <a href="" class="btn btn-info btn-sm">View Invoice</a>
+                                            <a href="" class="btn btn-info btn-sm" download="">Download Invoice</a>
                                         </td>
 
                                     </tr>
