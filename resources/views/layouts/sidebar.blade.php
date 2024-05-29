@@ -14,6 +14,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('suppliers.index') }}">
+                        <i class="bi bi-box"></i> Supplier
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('purchase_orders.index') }}">
+                        <i class="bi bi-box"></i> Purchase Orders
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('inventories.index') }}">
                         <i class="bi bi-box"></i> Inventory
                     </a>

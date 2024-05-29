@@ -19,7 +19,7 @@
                                     <option value="Inventory Clerk">Inventory Clerk</option>
                                     <option value="Procurement Manager">Procurement Manager</option>
                                     <option value="Accounting Manager">Accounting Manager</option>
-                                    <option value="Supplier">Accounting Manager</option>
+                                    <option value="Supplier">Supplier</option>
                                 </select>
 
                                 @error('role')
