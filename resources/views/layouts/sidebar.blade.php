@@ -15,12 +15,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('suppliers.index') }}">
-                        <i class="bi bi-box"></i> Supplier
+                        <i class="bi bi-truck"></i> Suppliers
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('purchase_orders.index') }}">
-                        <i class="bi bi-box"></i> Purchase Orders
+                    <a class="nav-link" href="{{ route('orders.index') }}">
+                        <i class="bi bi-clipboard-data"></i> Purchase Orders
                     </a>
                 </li>
                 <li class="nav-item">

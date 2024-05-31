@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventory;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::orderBy('id', 'desc')->get();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -28,7 +30,21 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'preferred_payment_method' => 'required|string',
+            'account_number' => 'required',
+
+        ]);
+
+
+        $supplier = Supplier::create([
+            'supplier_name' => $request->supplier_name,
+            'account_number' => $request->account_number,
+            'preferred_payment_method' => $request->preferred_payment_method,
+        ]);
+
+        return back()->with('success', 'Supplier Successfully Added');
     }
 
     /**

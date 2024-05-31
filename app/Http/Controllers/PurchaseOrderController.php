@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseOrder;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
@@ -12,7 +13,8 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = PurchaseOrder::orderBy('id', 'desc')->get();
+        return view('orders.index', compact('orders'));
     }
 
     /**

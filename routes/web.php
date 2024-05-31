@@ -27,4 +27,4 @@ Route::resource('invoices',\App\Http\Controllers\InvoicesController::class);
 Route::resource('users',\App\Http\Controllers\UserController::class);
 Route::resource('reports',\App\Http\Controllers\ReportsController::class);
 Route::resource('suppliers',\App\Http\Controllers\SupplierController::class);
-Route::resource('purchase_orders',\App\Http\Controllers\PurchaseOrderController::class);
+Route::resource('orders',\App\Http\Controllers\PurchaseOrderController::class);
