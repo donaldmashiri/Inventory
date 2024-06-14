@@ -71,6 +71,12 @@
                             <i class="bi bi-bar-chart"></i> Reporting Analytics
                         </a>
                     </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('orders.index') }}">
+                            <i class="bi bi-clipboard-data"></i> Purchase Orders
+                        </a>
+                    </li>
                 @endif
             </ul>
         </div>
