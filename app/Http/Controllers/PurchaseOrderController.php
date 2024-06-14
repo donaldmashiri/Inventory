@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventory;
 use App\Models\PurchaseOrder;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Auth;
 
 class PurchaseOrderController extends Controller
 {
@@ -22,7 +24,9 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
-        //
+        $suppliers = Supplier::all();
+        $items = Inventory::all();
+        return view('orders.create', compact('suppliers', 'items'));
     }
 
     /**
@@ -30,7 +34,26 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'supplier_id' => 'required',
+            'delivery_date' => 'required|date|after:' . now()->format('Y-m-d'),
+            'unit_price' => 'required',
+            'item_name' => 'required',
+            'quantity' => 'required',
+        ]);
+
+
+        $order = PurchaseOrder::create([
+            'supplier_id' => $request->supplier_id,
+            'delivery_date' => $request->delivery_date,
+            'item_name' => $request->item_name,
+            'unit_price' => $request->unit_price,
+            'total_price' => $request->unit_price * $request->quantity,
+            'user_id' => auth()->user()->id,
+            'quantity' => $request->quantity
+        ]);
+
+        return back()->with('success', 'Purchase Order Successfully Created');
     }
 
     /**

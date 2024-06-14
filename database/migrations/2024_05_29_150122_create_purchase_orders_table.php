@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('purchase_order_number')->unique();
             $table->integer('supplier_id');
-            $table->date('order_date');
             $table->date('delivery_date');
             $table->string('item_name');
+            $table->integer('quantity');
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total_price', 10, 2);
             $table->timestamps();

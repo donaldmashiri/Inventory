@@ -15,4 +15,9 @@ class Supplier extends Model
         'preferred_payment_method',
     ];
 
+    public function purchaseOrders()
+    {
+        return $this->hasMany(PurchaseOrder::class, 'supplier_id');
+    }
+
 }

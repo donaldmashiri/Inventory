@@ -16,30 +16,29 @@
                         </div>
                     </div>
                     <div class="card-body">
-                       @if($suppliers->count() > 0)
+                       @if($orders->count() > 0)
                             <table class="table table-sm table-bordered table-striped table-responsive-sm">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">purchase_order_number</th>
-                                    <th scope="col">supplier</th>
-                                    <th scope="col">order_date</th>
-                                    <th scope="col">delivery_date</th>
-                                    <th scope="col">item_name</th>
-                                    <th scope="col">unit_price</th>
-                                    <th scope="col">total_price</th>
+                                    <th scope="col">Purchase order #</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Order_date</th>
+                                    <th scope="col">Delivery_date</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Total Price</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($orders as $data)
                                     <tr>
-                                        <td> {{$data->id}} </td>
-                                        <td> {{$data->purchase_order_number}} </td>
+                                        <td> PU00{{$data->id}} </td>
+                                        <td> {{$data->supplier->supplier_name}} </td>
                                         <td> {{$data->created_at}} </td>
                                         <td> {{$data->delivery_date}} </td>
                                         <td> {{$data->item_name}} </td>
-                                        <td> {{$data->unit_price}} </td>
-                                        <td> {{$data->total_price}} </td>
+                                        <td> ${{number_format($data->unit_price, 2)}} </td>
+                                        <td> ${{number_format($data->total_price, 2)}} </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

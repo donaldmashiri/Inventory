@@ -10,12 +10,15 @@ class PurchaseOrder extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'purchase_order_number',
         'supplier_id',
-        'order_date',
         'delivery_date',
         'item_name',
         'unit_price',
         'total_price',
     ];
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoices;
+use App\Models\PurchaseOrder;
 use App\Models\Requisition;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,10 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-         $requisitions = Requisition::where('status', 'approved')->get();
-        return view('invoices.index', compact('requisitions'));
+        $orders = PurchaseOrder::orderBy('id', 'desc')->get();
+        return view('invoices.index', compact('orders'));
+//         $requisitions = Requisition::where('status', 'approved')->get();
+//        return view('invoices.index', compact('requisitions'));
     }
 
     /**
@@ -38,8 +41,8 @@ class InvoicesController extends Controller
      */
     public function show(string $id)
     {
-        $invoice = Requisition::findorfail($id);
-        return view('invoices.show', compact('invoice'));
+        $order = PurchaseOrder::findorfail($id);
+        return view('invoices.show', compact('order'));
     }
 
     /**

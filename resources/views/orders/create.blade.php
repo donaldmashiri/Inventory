@@ -16,43 +16,64 @@
                     </div>
                     <div class="card-body">
                         @include('layouts.messages')
-                        <form method="POST" action="{{ route('suppliers.store') }}">
+                        <form method="POST" action="{{ route('orders.store') }}">
                             @csrf
 
                            <div class="row">
-                               <div class="col-md-6 form-group">
-                                       <label for="supplier_name">{{ __('Supplier Name') }}</label>
-                                       <input id="supplier_name" type="text" class="form-control @error('supplier_name') is-invalid @enderror" name="supplier_name"  required >
-                                       @error('supplier_name')
-                                       <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span> @enderror
-                               </div>
-                               <div class="col-md-6 form-group">
-                                       <label for="account_number">{{ __('Account Number') }}</label>
-                                       <input id="account_number" type="text" class="form-control @error('account_number') is-invalid @enderror" name="account_number"  required >
-                                       @error('account_number')
+                               <div class="col-md-12 m-2 form-group">
+                                       <label for="supplier_id">{{ __('Select Supplier') }}</label>
+                                   <select name="supplier_id" id="supplier_id" class="form-control">
+                                       <option value="">Select Supplier</option>
+                                       @foreach($suppliers as $supplier)
+                                           <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
+                                       @endforeach
+                                   </select>
+
+                                       @error('supplier_id')
                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span> @enderror
                                </div>
 
-                               <div class="col-md-6 form-group mt-3">
-                                   <label for="preferred_payment_method">{{ __('Item Category') }}</label>
-                                   <select name="preferred_payment_method" class="form-control " id="preferred_payment_method">
-                                       <option value="">Select Category</option>
-                                       <option value="Cash">Cash</option>
-                                       <option value="Paynow">Paynow</option>
-                                       <option value="Master Card">Master Card</option>
-                                       <option value="Visa Card">Visa Card</option>
-                                       <option value="ALL">ALL</option>
+                               <div class="col-md-8 m-2 form-group">
+                                   <label for="item_name">{{ __('Item Name') }}</label>
+                                   <select name="item_name" id="item_name" class="form-control">
+                                       <option value="">Select Item Name</option>
+                                       @foreach($items as $data)
+                                           <option value="{{$data->item_name}}">{{$data->item_name}}</option>
+                                       @endforeach
                                    </select>
-                                   @error('preferred_payment_method')
+                                   @error('item_name')
                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                   @enderror
+                                    </span> @enderror
+                               </div>
 
+                               <div class="col-md-8 m-2 form-group">
+                                       <label for="unit_price">{{ __('Unit Price') }}</label>
+                                       <input id="unit_price" type="text" class="form-control" name="unit_price"  required >
+                                       @error('unit_price')
+                                       <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span> @enderror
+                               </div>
+
+                               <div class="col-md-8 m-2 form-group">
+                                       <label for="quantity">{{ __('quantity') }}</label>
+                                       <input id="quantity" type="text" class="form-control" name="quantity"  required >
+                                       @error('quantity')
+                                       <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span> @enderror
+                               </div>
+
+                               <div class="col-md-8  m-2 form-group">
+                                   <label for="delivery_date">{{ __('Delivery Date') }}</label>
+                                   <input id="delivery_date" type="date" class="form-control" name="delivery_date"  required >
+                                   @error('delivery_date')
+                                   <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span> @enderror
                                </div>
 
                            </div>
@@ -60,7 +81,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success">
-                                        {{ __('Add') }}
+                                        {{ __('Create') }}
                                     </button>
                                 </div>
                             </div>

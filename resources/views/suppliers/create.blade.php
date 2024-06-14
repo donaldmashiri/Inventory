@@ -37,10 +37,10 @@
                                     </span> @enderror
                                </div>
 
-                               <div class="col-md-6 form-group mt-3">
-                                   <label for="preferred_payment_method">{{ __('Item Category') }}</label>
+                               <div class="col-md-8 form-group mt-3">
+                                   <label for="preferred_payment_method">{{ __('Payment Method') }}</label>
                                    <select name="preferred_payment_method" class="form-control " id="preferred_payment_method">
-                                       <option value="">Select Category</option>
+                                       <option value="">Select Payment</option>
                                        <option value="Cash">Cash</option>
                                        <option value="Paynow">Paynow</option>
                                        <option value="Master Card">Master Card</option>

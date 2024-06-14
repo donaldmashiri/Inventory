@@ -8,46 +8,41 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h5 class="fw-bolder">
-                            <i class="bi bi-file-earmark-text me-2"></i>
+                            <i class="bi bi-box me-2"></i>
                             {{ __('Invoices') }}
                         </h5>
                     </div>
                     <div class="card-body">
-                        @include('layouts.messages')
-                       @if($requisitions->count() > 0)
+                        @if($orders->count() > 0)
                             <table class="table table-sm table-bordered table-striped table-responsive-sm">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Req#</th>
+                                    <th scope="col">Purchase order #</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Order_date</th>
+                                    <th scope="col">Delivery_date</th>
                                     <th scope="col">Item Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Code</th>
-                                    <th scope="col">Quantity Requested</th>
-                                    <th scope="col">Date Requested</th>
-                                    <th scope="col">Date Approved</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Total Price</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($requisitions as $requisition)
+                                @foreach($orders as $data)
                                     <tr>
-                                        <td> {{$requisition->id}} </td>
-                                        <td> {{$requisition->inventory->item_name}} </td>
-                                        <td> {{$requisition->inventory->item_category}} </td>
-                                        <td> {{$requisition->inventory->item_code}} </td>
-                                        <td> {{$requisition->quantity}} </td>
-                                        <td> {{$requisition->created_at}} </td>
-                                        <td> {{$requisition->updated_at}} </td>
-                                        <td>
-                                            <a href="" class="btn btn-info btn-sm" download="">Download Invoice</a>
-                                        </td>
-
+                                        <td> PU00{{$data->id}} </td>
+                                        <td> {{$data->supplier->supplier_name}} </td>
+                                        <td> {{$data->created_at}} </td>
+                                        <td> {{$data->delivery_date}} </td>
+                                        <td> {{$data->item_name}} </td>
+                                        <td> ${{number_format($data->unit_price, 2)}} </td>
+                                        <td> ${{number_format($data->total_price, 2)}} </td>
+                                        <td><a href="{{route('invoices.show', $data->id)}}" class="btn btn-danger btn-sm">Print</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                           @else
-                           <p class="alert alert-danger">No Items Added</p>
+                        @else
+                            <p class="alert alert-danger">No Data Added</p>
                         @endif
 
                     </div>
